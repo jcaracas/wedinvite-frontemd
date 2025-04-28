@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Usuario</title>
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <link rel="stylesheet" href="./assets/css/registro.css">
+  
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <div class="form-wrapper">
+    <form id="registroForm" class="form-registro">
+      <h2>Registro</h2>
+      <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required />
+      <input type="email" id="email" name="email" placeholder="Correo electrónico" required />
+      <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña" required />
+      <select id="tipo_usuario" name="tipo_usuario">
+        <option value="" disabled selected>Selecciona el tipo de usuario</option>
+        <option value="Novio">Novio</option>
+        <option value="Novia">Novia</option>
+        <option value="Invitado">Invitado</option>
+        <option value="Admin">Admin</option>
+        <option value="Asesor">Asesor</option>
+      </select>
+      <button type="submit">Registrar</button>
+    </form>
+    <div id="mensaje"></div>
+
+     <!-- Modal de Agradecimiento -->
+     <div id="modal-exito" class="modal">
+        <div class="modal-contenido">
+        <span class="cerrar">&times;</span>
+        <h2>Usuario Registrado con exito</h2>
+        <p>Por favor inicia session para continuar</p>
+        </div>
+    </div>
+    <!-- Fin del Modal de Agradecimiento -->
+    <div id="modal-error" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar">&times;</span>
+        <h2>¡Error!</h2>
+        <p>Hubo un problema, intenta nuevamente.</p> <!-- Este párrafo será actualizado dinámicamente -->
+      </div>          
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 WedInvite - Todos los derechos reservados</p>
+  </footer>
+  <script>
+    // Cargar navbar dinámicamente
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar').innerHTML = data;
+  
+        // Activar funcionalidad del menú hamburguesa después de insertar el navbar
+        const toggle = document.querySelector('.navbar-toggle');
+        const menu = document.querySelector('.navbar-menu');
+  
+        if (toggle && menu) {
+          toggle.addEventListener('click', () => {
+            menu.classList.toggle('navbar-menu-active');
+          });
+        }
+      })
+      .catch(error => console.error('Error al cargar el navbar:', error));
+  </script>
+  <script src="./assets/js/registro.js"></script>
+</body>
+</html>

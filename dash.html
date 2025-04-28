@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - WebInvite</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/dash.css">
+</head>
+<body>
+    <div id="navbar"></div>
+
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Panel de Administración</h1>
+            </header>
+
+        <main class="dashboard-main">
+            <section class="resumen-rapido-section">
+                <h2>Resumen Rápido</h2>
+                <div class="resumen-rapido-grid">
+                    <div class="resumen-item">
+                        <span class="resumen-titulo">Clientes Activos</span>
+                        <span class="resumen-valor" id="total-clientes">0</span>
+                    </div>
+                    <div class="resumen-item">
+                        <span class="resumen-titulo">Nuevos Clientes (Mes)</span>
+                        <span class="resumen-valor" id="nuevos-clientes-mes">0</span>
+                    </div>
+                    <div class="resumen-item">
+                        <span class="resumen-titulo">Mensajes Pendientes</span>
+                        <span class="resumen-valor" id="mensajes-pendientes">0</span>
+                    </div>
+                    <div class="resumen-item">
+                        <span class="resumen-titulo">Eventos Próximos (Semana)</span>
+                        <span class="resumen-valor" id="eventos-proximos-semana">0</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="clientes-section">
+                <h2>Clientes</h2>
+                <div class="clientes-actions">
+                    <div class="clientes-filters">
+                        <label for="filtro-estado-cliente">Filtrar por estado:</label>
+                        <select id="filtro-estado-cliente">
+                            <option value="">Todos</option>
+                            <option value="activo">Activos</option>
+                            <option value="inactivo">Inactivos</option>
+                            <option value="Pendiente">Pendientes</option>
+                        </select>
+                    </div>
+                    <div class="clientes-search">
+                        <input type="text" id="buscar-cliente" placeholder="Buscar cliente...">
+                    </div>
+                </div>
+                <table class="clientes-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-clientes-body">
+                        </tbody>
+                </table>
+            </section>
+
+            <section class="mensajes-contacto-section">
+                <h2>Mensajes de Contacto</h2>
+                <div class="mensajes-actions">
+                    <div class="mensajes-filters">
+                        <label for="filtro-estado-mensaje">Filtrar por estado:</label>
+                        <select id="filtro-estado-mensaje">
+                            <option value="">Todos</option>
+                            <option value="nuevo">Nuevo</option>
+                            <option value="leido">Leído</option>
+                            <option value="respondido">Respondido</option>
+                        </select>
+                    </div>
+                </div>
+                <table class="mensajes-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-mensajes-body">
+                        </tbody>
+                </table>
+            </section>
+
+            <section class="eventos-section">
+                <h2>Eventos Próximos</h2>
+                <div class="eventos-filters">
+                    <label for="filtro-rango-eventos">Ver eventos en los próximos:</label>
+                    <select id="filtro-rango-eventos">
+                        <option value="7">7 días</option>
+                        <option value="30">30 días</option>
+                        <option value="90">90 días</option>
+                    </select>
+                </div>
+                <ul class="eventos-lista" id="lista-eventos-proximos">
+                    </ul>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <p>&copy; 2025 WedInvite - Todos los derechos reservados</p>
+    </footer>
+    <script>
+      // Cargar navbar dinámicamente
+      fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('navbar').innerHTML = data;
+    
+          // Activar funcionalidad del menú hamburguesa después de insertar el navbar
+          const toggle = document.querySelector('.navbar-toggle');
+          const menu = document.querySelector('.navbar-menu');
+    
+          if (toggle && menu) {
+            toggle.addEventListener('click', () => {
+              menu.classList.toggle('navbar-menu-active');
+            });
+          }
+        })
+        .catch(error => console.error('Error al cargar el navbar:', error));
+    </script>
+    <script src="assets/js/dash.js"></script>
+</body>
+</html>

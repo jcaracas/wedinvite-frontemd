@@ -1,0 +1,67 @@
+
+  .dashboard-container {
+    max-width: 800px;
+    margin: 45px auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  }
+  
+  h1 {
+    color: #425059;
+    text-align: center;
+  }
+  
+  button {
+    background-color: #732817;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+  }
+  
+  .mensajes {
+    margin-top: 2rem;
+    text-align: left;
+  }
+  
+  .mensaje {
+    background-color: #D9B4A7;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  /* Pantallas pequeñas (teléfonos) */
+@media (max-width: 480px) {
+  .dashboard-container {
+      width: 300px;
+      padding: 1rem;
+      margin: 20px auto;
+  }
+
+  button {
+      float: none;
+      width: 100%;
+      text-align: center;
+      margin-top: 1rem;
+  }
+
+  .mensaje {
+      padding: 0.8rem;
+  }
+}
+
+/* Pantallas medianas (tablets) */
+@media (max-width: 768px) {
+  .dashboard-container {
+      padding: 1.5rem;
+  }
+
+  .mensaje {
+      padding: 1rem;
+  }
+}

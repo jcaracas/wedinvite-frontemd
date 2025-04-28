@@ -1,0 +1,186 @@
+/* Estilos generales del dashboard */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.dashboard-header {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.dashboard-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-gap: 20px;
+}
+
+.resumen-rapido-section,
+.clientes-section,
+.mensajes-contacto-section,
+.eventos-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.resumen-rapido-section h2,
+.clientes-section h2,
+.mensajes-contacto-section h2,
+.eventos-section h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Estilos del resumen rápido */
+.resumen-rapido-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-gap: 15px;
+    margin-bottom: 15px;
+}
+
+.resumen-item {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.resumen-titulo {
+    display: block;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.resumen-valor {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Estilos de las tablas */
+.clientes-table,
+.mensajes-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    
+
+}
+
+.clientes-table th,
+.clientes-table td,
+.mensajes-table th,
+.mensajes-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.clientes-table th,
+.mensajes-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+/* Estilos de las acciones */
+.clientes-actions,
+.mensajes-actions,
+.eventos-filters {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.clientes-filters label,
+.mensajes-filters label,
+.eventos-filters label {
+    font-weight: bold;
+}
+
+.clientes-filters select,
+.clientes-search input[type="text"],
+.mensajes-filters select,
+.eventos-filters select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilos de la lista de eventos */
+.eventos-lista {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+.eventos-lista li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.eventos-lista li:last-child {
+    border-bottom: none;
+}
+
+.evento-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.evento-info {
+    flex-grow: 1;
+}
+
+.evento-acciones button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+.evento-acciones button:hover {
+    background-color: #0056b3;
+}
+
+/* Media queries para hacerlo más responsivo */
+@media (max-width: 768px) {
+    .dashboard-main {
+        grid-template-columns: 1fr;
+    }
+
+    .clientes-actions,
+    .mensajes-actions,
+    .eventos-filters {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .clientes-search {
+        width: 100%;
+    }
+
+    .clientes-search input[type="text"] {
+        width: 100%;
+    }
+}

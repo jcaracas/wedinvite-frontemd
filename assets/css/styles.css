@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f8f8;
+    text-align: center;
+    margin: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+footer {
+    background-color: #425059;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 35px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(66, 80, 89, 0.5); /* Fondo con transparencia */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-contenido {
+    background-color: #F2F2F2;
+    color: #425059;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    animation: aparecer 0.5s ease;
+  }
+  
+  @keyframes aparecer {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  
+  .cerrar {
+    color: #732817;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+/* Contenedor del navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #425059;
+  color: white;
+  padding: 0.8rem 1rem;
+  position: relative;
+}
+
+/* Logo o título */
+.navbar-logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+/* Botón de menú hamburguesa */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+  z-index: 1001;
+}
+
+.navbar-toggle span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  display: block;
+}
+
+/* Menú de navegación */
+.navbar-menu {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar-menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+  .navbar-toggle {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: rgba(66, 80, 89, 0.95);
+    flex-direction: column;
+    width: 50%;
+    padding: 1rem;
+    border-radius: 0 0 0 8px;
+    z-index: 1000;
+  }
+
+  .navbar-menu.navbar-menu-active {
+    display: flex;
+  }
+
+  .navbar-menu a {
+    padding: 0.5rem 0;
+  }
+}
+#userName {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.5s ease;
+  margin-right: 10px;
+  color: #425059;
+  font-weight: bold;
+}
+
+#userName.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hidden {
+  display: none;
+}
+

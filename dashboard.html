@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel de Contactos</title>
+  <link rel="stylesheet" href="./assets/css/dashboard.css">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <div class="dashboard-container">
+    <h1>Mensajes de Contacto</h1>
+    <button onclick="logout()">Cerrar sesión</button>
+    <div id="mensajes" class="mensajes"></div>
+  </div>
+  
+  <footer>
+    <p>&copy; 2025 WedInvite - Todos los derechos reservados</p>
+  </footer>
+  <script>
+    // Cargar navbar dinámicamente
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar').innerHTML = data;
+  
+        // Activar funcionalidad del menú hamburguesa después de insertar el navbar
+        const toggle = document.querySelector('.navbar-toggle');
+        const menu = document.querySelector('.navbar-menu');
+  
+        if (toggle && menu) {
+          toggle.addEventListener('click', () => {
+            menu.classList.toggle('navbar-menu-active');
+          });
+        }
+      })
+      .catch(error => console.error('Error al cargar el navbar:', error));
+  </script>
+  <script src="./assets/js/dashboard.js"></script>
+</body>
+</html>
