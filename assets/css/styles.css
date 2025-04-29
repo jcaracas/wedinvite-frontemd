@@ -145,22 +145,26 @@ footer p {
   .navbar-menu a {
     padding: 0.5rem 0;
   }
-}
-#userName {
-  opacity: 0;
+}#userName {
   transform: translateY(-10px);
   transition: all 0.5s ease;
   margin-right: 10px;
-  color: #425059;
+  color: #fbfcfd;
   font-weight: bold;
+  opacity: 1; /* Ahora visible siempre */
 }
 
-#userName.visible {
-  opacity: 1;
-  transform: translateY(0);
+#userName.fade-in {
+  animation: fadeInAnimation 0.5s ease forwards;
 }
 
-.hidden {
-  display: none;
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-

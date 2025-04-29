@@ -15,24 +15,62 @@
     </footer>
     <script>
       // Cargar navbar dinámicamente
-      fetch('navbar.html')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('navbar').innerHTML = data;
-    
-          // Activar funcionalidad del menú hamburguesa después de insertar el navbar
-          const toggle = document.querySelector('.navbar-toggle');
-          const menu = document.querySelector('.navbar-menu');
-    
-          if (toggle && menu) {
+        fetch('navbar.html')
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('navbar').innerHTML = data;
+
+            // Ahora sí: una vez montado el navbar, seleccionamos
+            const toggle = document.querySelector('.navbar-toggle');
+            const menu = document.querySelector('.navbar-menu');
+            const authLink = document.querySelector('#authLink');
+            const userNameSpan = document.querySelector('#userName');
+
+            if (!toggle || !menu || !authLink) {
+              console.error('Error: No se encontraron elementos del navbar necesarios.');
+              return;
+            }
+
+            // Activar menú hamburguesa
             toggle.addEventListener('click', () => {
               menu.classList.toggle('navbar-menu-active');
             });
-          }
-        })
-        .catch(error => console.error('Error al cargar el navbar:', error));
-        
-    </script>
-    <script src="./assets/js/main.js" defer></script>
+
+            // Verificar si hay token
+            const token = localStorage.getItem('token');
+            const user = JSON.parse(localStorage.getItem('user'));
+            
+            if (token) {
+              try {
+                const nombreUsuario = user.nombre || "Usuario";
+                
+                // Mostrar nombre en el navbar
+                if (userNameSpan) {
+                  userNameSpan.textContent = `Hola, ${nombreUsuario}`;
+                  userNameSpan.classList.add('fade-in'); // <- Agrega animación
+                }
+
+                // Cambiar Login -> Logout
+                authLink.textContent = 'Logout';
+                authLink.href = '#';
+                authLink.addEventListener('click', () => {
+                  localStorage.removeItem('token');
+                  window.location.href = 'login.html';
+                });
+              } catch (error) {
+                console.error('Error al leer el token:', error);
+              }
+            } else {
+              // No logueado
+              if (userNameSpan) {
+                userNameSpan.textContent = '';
+              }
+              authLink.textContent = 'Login';
+              authLink.href = 'login.html';
+            }
+          })
+          .catch(error => console.error('Error al cargar el navbar:', error));
+
+    </script>    
 </body>
 </html>
