@@ -42,23 +42,27 @@
                 <h2>Clientes</h2>
                 <div class="clientes-actions">
                     <div class="clientes-filters">
-                        <label for="filtro-estado-cliente">Filtrar por estado:</label>
+                        <label for="filtro-estado-cliente">Filtrar Estado:</label>
                         <select id="filtro-estado-cliente">
                             <option value="">Todos</option>
                             <option value="activo">Activos</option>
                             <option value="inactivo">Inactivos</option>
                             <option value="Pendiente">Pendientes</option>
                         </select>
+                        
                     </div>
                     <div class="clientes-search">
                         <input type="text" id="buscar-cliente" placeholder="Buscar cliente...">
+                    </div>
+                    <div>
+                        <button id="btn-agregar-cliente" class="btn-principal ver"><strong>+</strong></button>
                     </div>
                 </div>
                 <table class="clientes-table">
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Email</th>
+                            <th class="hide-on-mobile">Email</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
@@ -86,9 +90,8 @@
                         <tr>
                             <th>Fecha</th>
                             <th>Nombre</th>
-                            <th>Email</th>
+                            <th class="hide-on-mobile">Email</th>
                             <th>Estado</th>
-                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="tabla-mensajes-body">
@@ -111,6 +114,62 @@
             </section>
         </main>
     </div>
+    <div id="modal-exito" class="modal">
+        <div class="modal-contenido">
+          <h3>Mensaje de Contacto<span class="cerrar">&times;</span></h3>
+          <p><strong>Nombre:</strong> <span id="modalNombre"></span></p>
+          <p><strong>Email:</strong> <span id="modalEmail"></span></p>
+          <p><strong>Mensaje:</strong></p>
+          <p id="modalMensajeTexto"></p>
+      
+          <label for="modalRespuesta">Responder:</label>
+        <textarea id="modalRespuesta" rows="4" placeholder="Escribe tu respuesta..."></textarea>
+
+        <div class="modal-actions">
+        <button id="marcar-nuevo" class="btn-secundario">Marcar como Nuevo</button>
+        <button id="responder-mensaje" class="btn-principal">Marcar como Respondido</button>
+        </div>
+        </div>
+      </div>
+    <div id="modal-cliente" class="modal">
+        <div class="modal-contenido">
+            
+            <h3>Agregar Cliente <span class="cerrar">&times;</span></h3>
+            <form id="form-cliente">
+                <input type="hidden" id="cliente-id">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="text" id="telefono">
+                </div>
+                <div class="form-group">
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" id="direccion">
+                </div>
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <select id="estado" required>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                </div>                  
+                <div class="modal-actions">
+                    <button id="btn-cancelar" class="btn-secundario">Cancelar</button>
+                    <button type="submit" class="btn-principal">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>  
+
+
     <footer>
         <p>&copy; 2025 WedInvite - Todos los derechos reservados</p>
     </footer>
@@ -173,6 +232,7 @@
             .catch(error => console.error('Error al cargar el navbar:', error));
   
       </script>
-    <script src="assets/js/dash.js"></script>
+    <script src="assets/js/dash.js" defer></script>
+    <script src="assets/js/cliente.js" defer></script>
 </body>
 </html>

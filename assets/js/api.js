@@ -1,24 +1,52 @@
-const API_URL = "http://localhost:5000/api"; // Asegúrate de que el backend corre en este puerto
-
-// Login de usuario
-document.getElementById("loginForm")?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    const response = await fetch(`${API_URL}/usuarios/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('mensajeModal');
+    const closeBtn = document.querySelector('.close-modal');
+    const nombreElem = document.getElementById('modal-nombre');
+    const emailElem = document.getElementById('modal-email');
+    const mensajeElem = document.getElementById('modal-mensaje');
+    const respuestaElem = document.getElementById('respuesta');
+  
+    // Mostrar el modal con datos del mensaje
+    document.querySelectorAll('.ver-mensaje-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.getAttribute('data-id');
+        const res = await fetch(`/api/contacto/mensajes/${id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        const data = await res.json();
+  
+        nombreElem.textContent = `Nombre: ${data.nombre}`;
+        emailElem.textContent = `Email: ${data.email}`;
+        mensajeElem.textContent = `Mensaje: ${data.mensaje}`;
+        respuestaElem.value = "";
+  
+        modal.classList.remove('hidden');
+  
+        // Cambiar estado a leído
+        await actualizarEstado(id, "Leído");
+  
+        document.getElementById('marcar-nuevo').onclick = () => actualizarEstado(id, "Nuevo");
+        document.getElementById('responder-mensaje').onclick = () => actualizarEstado(id, "Respondido");
+      });
     });
-
-    const data = await response.json();
-    if (response.ok) {
-        alert("Inicio de sesión exitoso");
-        localStorage.setItem("token", data.token); // Guardamos el token
-        window.location.href = "./dashboard.html"; // Redirigir a eventos
-    } else {
-        alert("Error: " + data.message);
+  
+    closeBtn.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
+  
+    async function actualizarEstado(id, estado) {
+      await fetch(`/api/contacto/mensajes/${id}/estado`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({ estado })
+      });
+      modal.classList.add('hidden');
+      location.reload();
     }
-});
+  });
+  

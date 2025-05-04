@@ -1,4 +1,11 @@
 /* Estilos generales del dashboard */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    width: 100%;
+}
 .dashboard-container {
     display: flex;
     flex-direction: column;
@@ -19,7 +26,7 @@
 
 .dashboard-main {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     grid-gap: 20px;
 }
 
@@ -75,10 +82,11 @@
 /* Estilos de las tablas */
 .clientes-table,
 .mensajes-table {
+    max-width: 100%;
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
-    
+    box-sizing: border-box;    
 
 }
 
@@ -105,6 +113,7 @@
     gap: 10px;
     align-items: center;
     margin-bottom: 15px;
+    justify-content: space-around;
 }
 
 .clientes-filters label,
@@ -120,6 +129,7 @@
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 
 /* Estilos de la lista de eventos */
@@ -163,10 +173,16 @@
     background-color: #0056b3;
 }
 
+#btn-agregar-cliente{
+    width: 100%;
+    padding: 5px 15px;
+    font-size: larger;
+}
+
 /* Media queries para hacerlo más responsivo */
 @media (max-width: 768px) {
     .dashboard-main {
-        grid-template-columns: 1fr;
+        grid-template-columns: 100%;
     }
 
     .clientes-actions,
@@ -182,5 +198,18 @@
 
     .clientes-search input[type="text"] {
         width: 100%;
+    }
+    .hide-on-mobile {
+        display: none;
+      }
+    .dashboard-header {
+    padding: 10px;
+    margin-bottom: 10px;
+    }
+    .dashboard-header h1 {
+        margin: 10px 0;
+    }
+    .ocultar {
+        display: flex;
     }
 }

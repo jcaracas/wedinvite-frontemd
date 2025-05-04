@@ -4,11 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <title>Gestión de Eventos</title>
     <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/dash.css">
+    <link rel="stylesheet" href="./assets/css/evento.css">
 </head>
 <body>
     <div id="navbar"></div>
+    <div class="dashboard-container">
+      <header class="dashboard-header">
+          <h1>Gestión de Eventos</h1>
+          <button id="btn-nuevo-evento" class="btn-principal">Nuevo Evento</button>
+      </header>
+
+      <main class="dashboard-main">
+          <section class="eventos-lista-section">
+              <h2>Lista de Eventos</h2>
+              <ul class="eventos-lista" id="lista-gestion-eventos">
+                  </ul>
+          </section>
+          <div id="modal-exito" class="modal modal-evento">
+            <div class="modal-contenido modal-evento-contet">
+                
+              <section class="formulario-evento-section " id="formulario-evento-section">
+                <h2>Crear/Editar Evento <span class="cerrar">&times;</span></h2>
+                <form id="formulario-evento">
+                    <input type="hidden" id="evento-id">
+                    <input type="hidden" id="usuario-id"> 
+                    <div class="input-event">
+                        <label for="cliente-id">Cliente:</label>
+                        <select id="cliente-id">
+                            <option value="">Seleccionar Cliente (Opcional)</option>
+                            </select>
+                    </div>
+                    <div class="input-event">
+                        <label for="titulo">Título del Evento:</label>
+                        <input type="text" id="titulo" required>
+                    </div>
+                    <div class="center">
+  
+                        <div>
+                          <label for="fecha-inicio">Fecha/Hora de Inicio:</label>
+                          <input type="date" id="fecha-inicio">
+                          <input type="time" id="hora-inicio">
+                        </div>
+                        
+                        <div>
+                          <label for="fecha-fin">Fecha/Hora de Fin:</label>
+                          <input type="date" id="fecha-fin">
+                          <input type="time" id="hora-fin">
+                        </div>
+                        
+                    </div>
+                    <div class="input-event">
+                        <label for="ubicacion">Ubicación:</label>
+                        <input type="text" id="ubicacion" required>
+                    </div>
+            
+                    <div class="input-event">
+                        <label for="tipo">Tipo de Evento:</label>
+                        <select id="tipo" required>
+                            <option value="">Seleccionar Tipo</option>
+                            <option value="Boda">Boda</option>
+                            <option value="Bautizo">Bautizo</option>
+                            <option value="Cumpleaños">Cumpleaños</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+            
+                    <div class="botones-formulario">
+                        <button type="submit">Guardar Evento</button>
+                        <button type="button" id="btn-cancelar-evento">Cancelar</button>
+                    </div>                  
+                  </form>
+              </section>
+            </div>
+          </div>
+      </main>
+  </div>
+  
     
+    <footer>
+      <p>&copy; 2025 WedInvite - Todos los derechos reservados</p>
+    </footer>
     <script>
       // Cargar navbar dinámicamente
         fetch('navbar.html')
@@ -67,6 +145,7 @@
           })
           .catch(error => console.error('Error al cargar el navbar:', error));
 
-    </script>      
+    </script>
+    <script src="assets/js/evento.js"></script>      
 </body>
 </html>
